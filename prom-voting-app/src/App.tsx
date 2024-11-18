@@ -1,50 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import VoteForm from './components/vote';
+import NominationForm from './components/nominate';
+import DisplayResults from './components/results';
 
 function App() {
-  let currTime = new Date();
-  let changeTime = new Date("10/28/2024 3:02:00")
-  if (currTime > changeTime) {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Target time has passed
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
 
-  } else {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Target time has not yet passed
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+  function chooseContentsToDisplay() {
+
+    const currTime = new Date();
+    // 18:00:00 is 6:00pm
+    // const voteStartTime = new Date("12/7/2024 18:00:00")
+    const votingStartTime = new Date("12/7/2024 18:00:00")
+
+    // 19:00:00 is 7:00pm
+    // const votingEndTime = new Date("12/7/2024 19:00:00")
+    const votingEndTime = new Date("12/7/2024 19:00:00")
+
+
+    // if voting hasn't begun, allow nominations
+    if (currTime < votingStartTime) {
+
+      return <NominationForm />
+
+    // if voting has begun but hasn't ended, allow voting
+    } else if (currTime < votingEndTime) {
+
+      return <VoteForm />
+
+    // if voting has ended, display results
+    } else {
+
+      return <DisplayResults />
+
+    }
   }
+
+  return (
+    <div className="min-h-screen w-screen bg-zinc-900 text-yellow-400">
+      <h1 className="text-center text-2xl pt-8">Prom King and Queen</h1>
+        {chooseContentsToDisplay()}
+    </div>
+  )
+  
 }
 
 export default App;
