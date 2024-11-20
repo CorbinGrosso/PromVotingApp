@@ -5,7 +5,8 @@ const getKingNominees = async (): Promise<string[]> => {
   try {
     const { data, error } = await supabase
       .from('KingVotes')
-      .select('nominee');
+      .select('nominee')
+      .order('created_at', { ascending: true });
 
     if (error) {
       console.error(error);
@@ -29,7 +30,8 @@ const getQueenNominees = async (): Promise<string[]> => {
   try {
     const { data, error } = await supabase
       .from('QueenVotes')
-      .select('nominee');
+      .select('nominee')
+      .order('created_at', { ascending: true });
 
     if (error) {
       console.error(error);

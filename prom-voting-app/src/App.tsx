@@ -6,9 +6,6 @@ function App() {
 
   function chooseContentsToDisplay() {
 
-    return <VoteForm />
-    // return <DisplayResults />
-
     const currTime = new Date();
 
     // 18:00:00 is 6:00pm

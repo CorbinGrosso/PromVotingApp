@@ -5,7 +5,8 @@ const getKingNominees = async (): Promise<string[]> => {
   try {
     const { data, error } = await supabase
       .from('KingVotes')
-      .select('nominee');
+      .select('nominee')
+      .order('created_at', { ascending: true });
 
     if (error) {
       console.error(error);
@@ -24,7 +25,7 @@ const addKingNominee = async (nominee: string) => {
   try {
     const { error } = await supabase
       .from('KingVotes')
-      .insert({ nominee });
+      .insert({ nominee, created_at: new Date() });
 
     if (error) {
       console.error(error);
@@ -39,7 +40,8 @@ const getQueenNominees = async (): Promise<string[]> => {
   try {
     const { data, error } = await supabase
       .from('QueenVotes')
-      .select('nominee');
+      .select('nominee')
+      .order('created_at', { ascending: true });
 
     if (error) {
       console.error(error);
@@ -58,7 +60,7 @@ const addQueenNominee = async (nominee:string) => {
   try {
     const { error } = await supabase
       .from('QueenVotes')
-      .insert({ nominee });
+      .insert({ nominee, created_at: new Date() });
 
     if (error) {
       console.error(error);
@@ -128,8 +130,8 @@ export default function NominationForm() {
       <h2 className="text-center text-xl pt-4 font-bold">
         Nominations
       </h2>
-      <h3 className="text-center font-italictext-lg pt-4">
-        Nominations end and Voting begins at 6:00pm
+      <h3 className="text-center italic text-lg pt-4">
+        Nominations End and Voting Begins at 6:00pm
       </h3>
       <div className="flex justify-center mt-4">
         <button
