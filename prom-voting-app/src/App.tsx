@@ -6,7 +6,7 @@ function App() {
 
   function chooseContentsToDisplay() {
 
-    // return <VoteForm />
+    return <VoteForm />
     // return <DisplayResults />
 
     const currTime = new Date();
