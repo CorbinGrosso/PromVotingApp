@@ -5,6 +5,7 @@ import DisplayResults from './components/results';
 function App() {
 
   function chooseContentsToDisplay() {
+    return <DisplayResults />
 
     const currTime = new Date();
 
