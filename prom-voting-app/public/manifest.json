@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Prom Voting",
+  "name": "Prom King and Queen Voting",
   "icons": [
     {
       "src": "favicon.ico",
